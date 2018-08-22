@@ -1,35 +1,29 @@
-<?php 
+<?php
     session_start();
     if(count($_SESSION)) header("Location: home.php");
     $error = isset($_GET['error']);
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login page</title>
+<?php include "partials/header.php"; ?>
 
-    <style>
-        #error {
-            color: red;
-            font-family: Arial;
-        }
-    </style>
-</head>
-<body>
-    <h1>Login</h1>
+<h1>Login</h1>
 
-    <?php if($error) { ?>
-        <p id="error">Your email or password is wrong</p>
-    <?php } ?>
+<?php if($error) { ?>
+    <div class="alert alert-danger" role="alert">Your email or password is wrong</div>
+<?php } ?>
 
-    <form action="loginSubmit.php" method="post">
+<form action="controllers/loginSubmit.php" method="post">
+    <div class="form-group">
         <input type="text" name="email" placeholder="Type your email" required />
+    </div>
+
+    <div class="form-group">
         <input type="password" name="pass" placeholder="Type your password" required/>
+    </div>
+
+    <div class="form-group">
         <input type="submit" value="Login"/>
-    </form>
-</body>
-</html>
+    </div>
+</form>
+
+<?php include "partials/footer.php"; ?>
